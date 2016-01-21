@@ -55,6 +55,22 @@ JNIEXPORT jint JNICALL Java_com_example_learnjni_NdkUtils_totalIntArray
 JNIEXPORT jintArray JNICALL Java_com_example_learnjni_NdkUtils_IntArrayAdd10
   (JNIEnv *, jclass, jintArray);
 
+/*
+ * Class:     com_example_learnjni_NdkUtils
+ * Method:    returnStringArray
+ * Signature: ()[Ljava/lang/String;
+ */
+JNIEXPORT jobjectArray JNICALL Java_com_example_learnjni_NdkUtils_returnStringArray
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_example_learnjni_NdkUtils
+ * Method:    getUserName
+ * Signature: (Lcom/example/learnjni/User;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_example_learnjni_NdkUtils_getUserName
+  (JNIEnv *, jclass, jobject);
+
 #ifdef __cplusplus
 }
 #endif

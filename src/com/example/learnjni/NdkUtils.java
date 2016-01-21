@@ -10,4 +10,7 @@ public final class NdkUtils {
 	public native static String convertToUpper(String string);
 	public native static int totalIntArray(int[] numbers);
 	public native static int[] IntArrayAdd10(int[] numbers);
+	public native static String[] returnStringArray();
+	public native static String getUserName(User users);
+	
 }

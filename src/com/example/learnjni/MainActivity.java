@@ -34,6 +34,17 @@ public class MainActivity extends Activity {
 			int[] add10 = NdkUtils.IntArrayAdd10(generateInts());
 			makeToast(intsToString(add10));
 		}
+		else if(id == R.id.btn_return_stringArray){
+			String[] strs = NdkUtils.returnStringArray();
+			StringBuilder sb = new StringBuilder();
+			for (String string : strs) {
+				sb.append(string + ", ");
+			}
+			makeToast(sb.toString());
+		}
+		else if(id == R.id.btn_get_object_field){
+			makeToast(NdkUtils.getUserName(new User("wuhui", "123456")));
+		}
 		
 	}
 	

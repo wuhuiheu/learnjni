@@ -35,6 +35,20 @@
             android:layout_height="wrap_content"
             android:onClick="onBtnClick"
             android:text="将整形数组+10" />
+		
+		<Button
+            android:id="@+id/btn_return_stringArray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onBtnClick"
+            android:text="返回string数组" />
+		
+		<Button
+            android:id="@+id/btn_get_object_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onBtnClick"
+            android:text="jni获取对象的值" />
         
     </LinearLayout>
 

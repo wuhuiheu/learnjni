@@ -103,6 +103,7 @@ JNIEXPORT jint JNICALL Java_com_example_learnjni_NdkUtils_totalIntArray
 JNIEXPORT jintArray JNICALL Java_com_example_learnjni_NdkUtils_IntArrayAdd10
   (JNIEnv *env, jclass thiz, jintArray intArray)
 {
+
 	int len = env->GetArrayLength(intArray);//获取数组对象元素个数
 	jint *numbers = env->GetIntArrayElements(intArray, NULL);//获取数组中所有元素
 
@@ -116,4 +117,42 @@ JNIEXPORT jintArray JNICALL Java_com_example_learnjni_NdkUtils_IntArrayAdd10
 		env->SetIntArrayRegion(add10IntArray, i - 1, 1, &add10);
 	}
 	return add10IntArray;
+}
+
+//演示如何回传一个string数组
+/*
+ * Class:     com_example_learnjni_NdkUtils
+ * Method:    returnStringArray
+ * Signature: ()[Ljava/lang/String;
+ */
+JNIEXPORT jobjectArray JNICALL Java_com_example_learnjni_NdkUtils_returnStringArray
+  (JNIEnv *env, jclass thiz)
+{
+	int i;
+	char *sa[] = {"Hello", "world", "jni", "很", "好玩"};
+	jclass stringClass = env->FindClass("java/lang/String");
+	jobjectArray returnObjectArray = env->NewObjectArray(5, stringClass, 0);//生成要返回的string数组
+
+	jstring jstr;
+	for(i = 0; i < 5; i++)
+	{
+		jstr = env->NewStringUTF(*(sa + i));
+		env->SetObjectArrayElement(returnObjectArray, i, jstr);//设置string数组每一项
+	}
+	return returnObjectArray;
+}
+
+//演示java传对象过来，jni获取其值,并返回
+/*
+ * Class:     com_example_learnjni_NdkUtils
+ * Method:    getUserName
+ * Signature: (Lcom/example/learnjni/User;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_example_learnjni_NdkUtils_getUserName
+  (JNIEnv *env, jclass thiz, jobject object)
+{
+	jclass userClass = env->GetObjectClass(object);
+	jfieldID nameField = env->GetFieldID(userClass, "name", "Ljava/lang/String;");//获取name fieldID
+	jstring name = (jstring)env->GetObjectField(object, nameField);
+	return name;
 }
